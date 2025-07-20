@@ -32,9 +32,9 @@ class Bot(Client):
         )
         self.LOGGER = LOGGER
 
-    async def start(self):
+    async def start(self, *args, **kwargs):  # ✅ Diperbaiki
         try:
-            await super().start()
+            await super().start(*args, **kwargs)  # ✅ Diperbaiki
             usr_bot_me = await self.get_me()
             self.username = usr_bot_me.username
             self.namebot = usr_bot_me.first_name
@@ -119,6 +119,6 @@ class Bot(Client):
             f"[🔥 BERHASIL DIAKTIFKAN! 🔥]\n\nBOT Dibuat oleh @{OWNER}\nJika @{OWNER} Membutuhkan Bantuan, Silahkan Tanyakan di Grup https://t.me/SharingUserbot"
         )
 
-    async def stop(self, *args):
+    async def stop(self, *args):  # opsional, biar seragam
         await super().stop()
         self.LOGGER(__name__).info("Bot stopped.")
